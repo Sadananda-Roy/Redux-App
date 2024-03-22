@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../../Pages/Home/Home";
-import Stopwatch from "../../Stopwatch/Stopwatch";
+import Stopwatch from "../../Pages/Stopwatch/Stopwatch";
+import TodoList from "../../Pages/TodoList/TodoList";
 
 export const router = createBrowserRouter([
     {
@@ -11,5 +12,9 @@ export const router = createBrowserRouter([
     {
       path: "stopwatch",
       element: <Stopwatch /> 
+    },
+    {
+      path: "todo",
+      element: <TodoList />
     }
   ])
