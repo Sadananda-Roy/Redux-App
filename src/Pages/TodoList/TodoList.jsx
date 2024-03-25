@@ -68,14 +68,14 @@ const TodoList = () => {
                         {/* Not editing state  */}
                         {!item.isEdit &&
                         <Grid container spacing={3} style={{display: "flex", alignItems: "center", borderBottom: "1px solid black", padding: "0.5em 2em"}}>
-                            <Grid item xs={1}>
+                            <Grid item xs={2}>
                                 <Checkbox
                                 checked={item.completed}
                                 onChange={() => handleCheckboxChange(item.id)}
                                 />
                             </Grid>
-                            <Grid item xs={9}>
-                                <span>{item.text}</span>
+                            <Grid item xs={8}>
+                                <span style={{textDecoration: item.completed ? "line-through" : ""}}>{item.text}</span>
                             </Grid>
                             <Grid item xs={1}>
                                 <span> 
