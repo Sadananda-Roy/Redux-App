@@ -8,6 +8,7 @@ const Home = () => {
             <ol>
                 <li><Link to="stopwatch">Stopwatch</Link></li>
                 <li><Link to="todo">Todo List</Link></li>
+                <li><Link to="chat">Chat App</Link></li>
             </ol>
         </div>
     )
