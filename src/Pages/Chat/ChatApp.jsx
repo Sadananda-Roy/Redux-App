@@ -4,7 +4,7 @@ import {auth} from "./Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatBox from "./ChatBox.jsx";
 const ChatApp = () => {
-    const [user] = useAuthState(auth) //user is null before sign in
+    const [user] = useAuthState(auth); //user is null before sign in
     return (
         <>
             {user ? <ChatBox /> : <SignIn />}

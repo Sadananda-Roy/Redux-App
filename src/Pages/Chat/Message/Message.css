@@ -1,0 +1,33 @@
+.message_container {
+    /* background-color: black; */
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/855/834/546/comics-wallpaper-preview.jpg");
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 0.5em;
+    width: 70%;
+    max-height: 20rem !important;
+    overflow-y: scroll;
+    .single_message {
+        background-color: black;
+        color: white;
+        margin: 0.4em 0;
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+        width: 50%;
+        .sender_name {
+            display: flex;
+            align-items: center;
+            font-weight: bolder;
+            .sender_avatar {
+                margin-right: 0.5em;
+            }
+        }
+        .sender_text {
+            margin-left: 2.7em;
+            text-transform: capitalize;
+        }
+    }
+    .single_message.right {
+        margin-left: auto;
+    }
+}

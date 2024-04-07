@@ -9,6 +9,7 @@ const Home = () => {
                 <li><Link to="stopwatch">Stopwatch</Link></li>
                 <li><Link to="todo">Todo List</Link></li>
                 <li><Link to="chat">Chat App</Link></li>
+                <li><Link to="infinite-scroll">Infinite Scroll</Link></li>
             </ol>
         </div>
     )

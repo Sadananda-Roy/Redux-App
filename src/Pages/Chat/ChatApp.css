@@ -1,7 +1,7 @@
 .signin_container, .chatbox_container {
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 .chatbox_container {
     flex-direction: column;

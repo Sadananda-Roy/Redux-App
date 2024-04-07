@@ -4,7 +4,7 @@ import { addTodo, toggleTodo, deleteTodo, editTodo, saveEditedTodo} from "../../
 import "./TodoList.css";
 //Component Inputs
 // import TextField from '@mui/material/TextField';
-import { Button, Checkbox, IconButton, Box, TextField, Grid } from "@mui/material";
+import { Button, Checkbox, IconButton, TextField, Grid } from "@mui/material";
 // import Box from '@mui/material/Box';
 // Icons 
 import DeleteIcon from '@mui/icons-material/Delete';

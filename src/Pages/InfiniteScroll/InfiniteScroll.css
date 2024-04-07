@@ -1,0 +1,18 @@
+.infinite_scroll_outer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.infinite_scroll_container {
+    height: 7rem;
+    width: 20rem;
+    overflow-y: scroll;
+    /* margin-top: 5rem;
+    margin-left: 5rem; */
+    border: 1px solid black;
+    padding: 1em;
+    .single_item {
+        margin-bottom: 1rem;
+    }
+}
