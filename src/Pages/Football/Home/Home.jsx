@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import "./Home.css";
 import { Link, Outlet } from "react-router-dom";
-import { fetchMatches } from "../../../Services/FootballServices";
+// import { fetchMatches } from "../../../Services/FootballServices";
 
 const Home = () => {
     useEffect(() => {
-        fetchMatches()
+        // fetchMatches()
     }, [])
     return (
         <div className="football-home">

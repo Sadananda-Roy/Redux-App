@@ -54,16 +54,13 @@ export default function Navbar({loggedInUser}) {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                {/* <AccountCircle /> */}
                                 <Avatar alt="User Avatar" src={loggedInUser?.photoURL} />
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
-                                // keepMounted
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
-                                // classes={{ paper: 'menu-content' }}
                             >
                                 <MenuItem>Profile</MenuItem>
                                 <MenuItem onClick={signOut}>Logout</MenuItem>
