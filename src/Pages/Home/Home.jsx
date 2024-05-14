@@ -10,6 +10,8 @@ const Home = () => {
                 <li><Link to="todo">Todo List</Link></li>
                 <li><Link to="chat">Chat App</Link></li>
                 <li><Link to="infinite-scroll">Infinite Scroll</Link></li>
+                <li><Link to="football">Football</Link></li>
+                <li><Link to="dictionary">Dictionary</Link></li>
             </ol>
         </div>
     )

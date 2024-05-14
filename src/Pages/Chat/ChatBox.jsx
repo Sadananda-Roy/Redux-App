@@ -1,6 +1,6 @@
 import React,{ useEffect, useRef, useState } from "react";
-import { addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, limit } from "firebase/firestore";
-import { auth, db } from "./Firebase";
+import { addDoc, collection, serverTimestamp, query, orderBy, onSnapshot, limit, doc, getDoc } from "firebase/firestore";
+import { authChat, dbChat } from "./Firebase";
 import { Button, FormControl, TextField } from "@mui/material";
 import "./ChatApp.css";
 import Message from "./Message/Message";
@@ -11,8 +11,9 @@ const ChatBox = () => {
     const chatboxRef = useRef(null);
 
     useEffect(() => {
+        // getData2();
         const q = query(
-            collection(db, "messages"),
+            collection(dbChat, "messages"),
             orderBy("createdAt", "desc"),
             limit(50)
           );
@@ -31,8 +32,21 @@ const ChatBox = () => {
         return () => unsubscribe;
     }, []);
 
+    const getData2 = async() => {
+        const docRef = doc(dbChat, "messages", "0ckNrtTpA8Wp2mW5erqn");
+        const docSnap = await getDoc(docRef);
+        debugger
+        if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        debugger
+        } else {
+        // docSnap.data() will be undefined in this case
+        debugger
+        console.log("No such document!");
+        }
+    }
     const signOut = () => {
-        auth.signOut();
+        authChat.signOut();
     };
     const handleSendMessage = async(event) => {
         event.preventDefault();
@@ -40,8 +54,8 @@ const ChatBox = () => {
             alert("Enter valid message");
             return;
         }
-        const { uid, displayName, photoURL } = auth.currentUser;
-        await addDoc(collection(db, "messages"), {
+        const { uid, displayName, photoURL } = authChat.currentUser;
+        await addDoc(collection(dbChat, "messages"), {
             text: message,
             name: displayName,
             avatar: photoURL,

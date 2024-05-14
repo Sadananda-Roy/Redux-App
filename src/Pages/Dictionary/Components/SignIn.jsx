@@ -1,13 +1,13 @@
 import React from "react";
-import { authChat } from "./Firebase";
+import { authDictionary } from "../../Chat/Firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Button } from "@mui/material";
-import "./ChatApp.css";
+// import "./ChatApp.css";
 
 const SignIn = () => {
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(authChat, provider);
+        signInWithPopup(authDictionary, provider);
     };
     
     return (

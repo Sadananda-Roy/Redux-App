@@ -1,0 +1,17 @@
+.dictionary-home-container {
+    .content-body {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .search-container {
+            display: flex;
+            align-items: center;
+            .search-btn {
+                margin-left: 1rem;
+                text-transform: capitalize;
+            }
+        }
+
+    }
+}

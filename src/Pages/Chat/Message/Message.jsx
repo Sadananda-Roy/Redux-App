@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import "./Message.css";
-import {auth} from "../Firebase";
+import {authChat} from "../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Avatar } from "@mui/material";
 
 const Message = ({allMessages, chatboxRef, scrollToBottom}) => {
-    const [user] = useAuthState(auth);
+    const [user] = useAuthState(authChat);
 
     useEffect(() => {
         scrollToBottom();

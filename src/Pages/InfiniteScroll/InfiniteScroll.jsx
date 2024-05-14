@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LinearProgress from '@mui/material/LinearProgress';
 import "./InfiniteScroll.css"
 
 export default function InfiniteScroll() {
     const [usersList, setUsersList] = useState([]);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const isInitialRender = useRef(true);
 
-    const getUsers = async () => {
+    const getUsers = async() => {
         setLoading(true)
         const resp = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`);
         const data = await resp.json();
@@ -15,12 +16,17 @@ export default function InfiniteScroll() {
         setLoading(false)
     };
     useEffect(() => {
-        getUsers();
-    }, [page]);
+        if (!isInitialRender.current) {
+            getUsers(1);
+        } else {
+            isInitialRender.current = false;
+        }
+    }, []);
     const handleScroll = (e) => {
         const {scrollHeight, clientHeight, scrollTop} = e.currentTarget;
         if(scrollHeight - scrollTop === clientHeight) {
             setPage(prevPage => prevPage + 1);
+            getUsers();
         } 
     }
 
