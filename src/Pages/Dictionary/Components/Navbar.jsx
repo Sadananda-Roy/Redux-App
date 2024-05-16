@@ -10,6 +10,8 @@ import Menu from '@mui/material/Menu';
 import { authDictionary } from '../../Chat/Firebase';
 import { Avatar } from '@mui/material';
 import "./CSS/Navbar.css";
+import { ThemeContext } from '@emotion/react';
+import ThemeSwitch from '../../../Assets/Common/Theme/ThemeSwitch';
 
 export default function Navbar({loggedInUser}) {
     const [auth, setAuth] = React.useState(true);
@@ -43,6 +45,7 @@ export default function Navbar({loggedInUser}) {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Dictionary
                     </Typography>
+                    <ThemeSwitch />
                     {auth && (
                         <div>
                             <Typography sx={{ marginLeft: "1em", display: "inline" }}>{loggedInUser?.displayName}</Typography>
