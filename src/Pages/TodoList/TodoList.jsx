@@ -13,7 +13,7 @@ import PublishIcon from '@mui/icons-material/Publish';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const TodoList = () => {
-    const todos = useSelector(state => state.todos) //name of slice
+    const todos = useSelector(state => state.todos); //name of slice
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState("");
     const [editedInput, setEditedInput] = useState([]);
