@@ -57,6 +57,7 @@ const ThemeSwitch = () => {
           borderRadius: 20 / 2,
         },
     }));
+    
     return (
         <MaterialUISwitch checked={themeState.mode === "dark"} onChange={themeToggler} />
     ); 

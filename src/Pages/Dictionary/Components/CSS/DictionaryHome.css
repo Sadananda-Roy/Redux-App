@@ -12,6 +12,28 @@
                 text-transform: capitalize;
             }
         }
-
+        .result-container {
+            /* border: 1px solid black; */
+            padding: 1rem;
+            border-radius: 0.3em;
+            margin-top: 1rem;
+            width: 90%;
+            /* justify-content: center; */
+            text-align: center;
+            /* background-color: rgba(247, 2, 2, 0.795); */
+            .title {
+                text-transform: capitalize;
+                font-weight: 700;
+                font-size: larger;
+                text-decoration: underline;
+                /* color: aliceblue; */
+            }
+            .cards-container {
+                display: flex;
+                justify-content: first baseline;
+                margin-top: 1rem;
+                /* overflow-y: auto; */
+            }
+        }
     }
 }
