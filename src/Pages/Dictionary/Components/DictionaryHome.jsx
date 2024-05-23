@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button, TextField, Typography } from "@mui/material";
+import { Backdrop, Button, CircularProgress, Collapse, TextField, Typography, Zoom } from "@mui/material";
 import { getMeaning } from "../../../Services/DictionaryServices";
-import { addWord, resetDictionary } from "../../../Redux/dictionarySlice";
+import { addWord, resetDictionary, addSearchedWord } from "../../../Redux/dictionarySlice";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "./Navbar";
 import "./CSS/DictionaryHome.css";
@@ -9,11 +9,13 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import DefinitionCard from "./DefinitionCard";
 
 const DictionaryHome = ({loggedInUser}) => {
-    const words = useSelector(state => state.dictionary);
+    const dictionary = useSelector(state => state.dictionary);
     const dispatch = useDispatch();
+    const [searchLoader, setSearchLoader] = useState(false);
     const [searchText, setSearchText] = useState("");
 
     const searchMeaning = async () => {
+        setSearchLoader(true);
         dispatch(resetDictionary());
         if(searchText.trim() !== '') {
             const response = await getMeaning(searchText);
@@ -21,8 +23,20 @@ const DictionaryHome = ({loggedInUser}) => {
                 dispatch(addWord(item));
             });
             setSearchText("");
+            dispatch(addSearchedWord(searchText));
+            setSearchLoader(false);
         }
     };
+
+    const onBadgeClick = async(text) => {
+        dispatch(resetDictionary());
+        if(text.trim() !== '') {
+            const response = await getMeaning(text);
+            response?.forEach(item => {
+                dispatch(addWord(item));
+            });
+        }
+    } 
 
     return (
         <div className="dictionary-home-container">
@@ -32,14 +46,25 @@ const DictionaryHome = ({loggedInUser}) => {
                     <TextField id="outlined-basic" value={searchText} label="Enter Word" variant="outlined" onChange={(e) => setSearchText(e.target.value)} />
                     <Button disabled={searchText.trim() === ''} className="search-btn " color="warning" variant="contained" onClick={searchMeaning}>Search</Button>
                 </div>
-                {words && 
+                {dictionary.words && 
                 <div className="result-container">
-                    <Typography className="title">{words[0]?.word}</Typography>
+                    {dictionary?.searchedWords.length > 1 &&
+                        <div className="last-searched-words-container">Last searched: {[...dictionary?.searchedWords].map((item,index) => <div style={{display: index === dictionary.searchedWords.length - 1 ? "none" : ""}} className="last-searched-word"><div className="searched-word-badge" onClick={() => onBadgeClick(item)} >{item}</div></div>)}</div>
+                    }
+                    <Typography className="title">{dictionary.words[0]?.word}</Typography>
                     <Grid2 container rowSpacing={5} columnSpacing={5} className="cards-container">
-                        {words[0]?.meanings.map(partOfSpeechItem => <Grid2 className="" xs={4}><DefinitionCard partOfSpeechItem={partOfSpeechItem} /></Grid2>)}
+                        {dictionary.words[0]?.meanings.map(partOfSpeechItem => <Grid2 className="" xs={4}><DefinitionCard partOfSpeechItem={partOfSpeechItem} /></Grid2>)}
                     </Grid2>
                 </div>}
             </div>
+
+            <Backdrop
+                sx={{ color: '#fff'}}
+                open={searchLoader}
+                onClick={() => setSearchLoader(false)}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     );
 }

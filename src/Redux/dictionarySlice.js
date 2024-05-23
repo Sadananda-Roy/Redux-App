@@ -2,16 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const dictionarySlice = createSlice({
     name: "dictionary",
-    initialState: [],
+    initialState: {
+        words: [],
+        searchedWords: []
+    },
     reducers: {
         addWord: (state, action) => {
-            state.push(action.payload);
+            state.words.push(action.payload);
         },
         resetDictionary: (state, action) => {
-            return [];
+            // return [];
+            state.words = [];
+        },
+        addSearchedWord: (state, action) => {
+            if(state.searchedWords.length === 11) {
+                state.searchedWords.shift();
+            }
+            state.searchedWords.push(action.payload);
         }
     }
 });
 
-export const { addWord, resetDictionary } = dictionarySlice.actions;
+export const { addWord, resetDictionary, addSearchedWord } = dictionarySlice.actions;
 export default dictionarySlice.reducer;
