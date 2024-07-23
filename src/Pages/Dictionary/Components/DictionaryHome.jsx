@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Backdrop, Button, CircularProgress, Collapse, TextField, Typography, Zoom } from "@mui/material";
+import { Backdrop, Button, CircularProgress, TextField, Typography } from "@mui/material";
 import { getMeaning } from "../../../Services/DictionaryServices";
 import { addWord, resetDictionary, addSearchedWord } from "../../../Redux/dictionarySlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 import "./CSS/DictionaryHome.css";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import DefinitionCard from "./DefinitionCard";
+import * as AxiosService from "../../../Services/AxiosServices";
+
 
 const DictionaryHome = ({loggedInUser}) => {
     const dictionary = useSelector(state => state.dictionary);
@@ -14,17 +16,26 @@ const DictionaryHome = ({loggedInUser}) => {
     const [searchLoader, setSearchLoader] = useState(false);
     const [searchText, setSearchText] = useState("");
 
+    // const searchMeaning2 = async () => {
+    //     setSearchLoader(true);
+    //     dispatch(resetDictionary());
+    //     if(searchText.trim() !== '') {
+    //         const response = await getMeaning(searchText);
+    //         response?.forEach(item => {
+    //             dispatch(addWord(item));
+    //         });
+    //         setSearchText("");
+    //         dispatch(addSearchedWord(searchText));
+    //         setSearchLoader(false);
+    //     }
+    // };
+
     const searchMeaning = async () => {
-        setSearchLoader(true);
-        dispatch(resetDictionary());
-        if(searchText.trim() !== '') {
-            const response = await getMeaning(searchText);
-            response?.forEach(item => {
-                dispatch(addWord(item));
-            });
-            setSearchText("");
-            dispatch(addSearchedWord(searchText));
-            setSearchLoader(false);
+        try {
+            const response = await AxiosService.FootballInstanceGet("");
+            return response.data;
+        } catch (error) {
+          console.error('Error fetching data:', error);
         }
     };
 

@@ -1,4 +1,4 @@
-import * as AxiosService from "./AxiosServices";
+import * as AxiosService from "./AxiosServices.js";
 
 export const getMeaning = async (word) => {
   try {
